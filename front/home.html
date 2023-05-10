@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo</title>
+</head>
+<body>
+	<h1>Minha Lista</h1>
+	<ul id="lista"></ul>
+
+	<script type="text/javascript">
+    const url = 'http://127.0.0.1:8000/';
+    const listaHtml = document.querySelector('#lista');
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const items = data.map( (item) => {
+          return `<li><a href="http://127.0.0.1:8000/l/${item[0]}">${item[0]}</a></li>`
+      })
+      listaHtml.innerHTML = items.toString().replaceAll(',','')
+      })
+      .catch(error => console.error(error));
+	</script>
+</body>
+</html>

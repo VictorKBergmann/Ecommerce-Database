@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <title>Amazun</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Amazun</h1>
+  
+  <h2>Insert Product</h2>
+  <form id="insertProductForm">
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" required>
+    
+    <label for="imagemUrl">Imagem URL:</label>
+    <input type="text" id="imagemUrl" name="imagemUrl" required>
+    
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="descricao" name="descricao" required>
+    
+    <button type="submit">Insert Product</button>
+  </form>
+  
+  <h2>Insert User</h2>
+  <form id="insertUserForm">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+    
+    <label for="cartao">Cartão:</label>
+    <input type="text" id="cartao" name="cartao" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <button type="submit">Insert User</button>
+  </form>
+  
+  <!-- Add other forms for your other endpoints -->
+  
+  <script>
+    // Insert Product form submission
+    $("#insertProductForm").submit(function(event) {
+      event.preventDefault();
+      
+      var preco = $("#preco").val();
+      var imagemUrl = $("#imagemUrl").val();
+      var descricao = $("#descricao").val();
+      
+      $.get(`/insert_produtos/?preco=${preco}&imagemUrl=${imagemUrl}&descricao=${descricao}`, function(data) {
+        console.log(data);
+        alert("Product inserted successfully!");
+      });
+    });
+    
+    // Insert User form submission
+    $("#insertUserForm").submit(function(event) {
+      event.preventDefault();
+      
+      var nome = $("#nome").val();
+      var cartao = $("#cartao").val();
+      var email = $("#email").val();
+      
+      $.get(`/insert_usuarios/?nome=${nome}&cartao=${cartao}&email=${email}`, function(data) {
+        console.log(data);
+        alert("User inserted successfully!");
+      });
+    });
+    
+    // Add other form submissions for your other endpoints
+    
+  </script>
+</body>
+</html>
